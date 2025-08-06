@@ -3,7 +3,7 @@ import sys
 import os
 
 # Installed Modules
-# None
+import pytest
 
 # Project Modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
@@ -32,6 +32,12 @@ def test_area_of_circle_zero_radius():
 
     # Assert
     assert result == 0
+
+
+def test_area_of_circle_negative_radius():
+    """Test area_of_circle with a negative radius."""
+    with pytest.raises(ValueError):
+        area_of_circle(-1)
 
 
 def test_get_nth_fibonacci_zero():
@@ -68,3 +74,15 @@ def test_get_nth_fibonacci_ten():
 
     # Assert
     assert result == 55
+
+
+def test_get_nth_fibonacci_negative():
+    """Test get_nth_fibonacci with negative n."""
+    with pytest.raises(ValueError):
+        get_nth_fibonacci(-5)
+
+
+def test_get_nth_fibonacci_non_integer():
+    """Test get_nth_fibonacci with non-integer input."""
+    with pytest.raises(TypeError):
+        get_nth_fibonacci(3.5)
